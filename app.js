@@ -62,6 +62,12 @@ app.post("/stats", (request, response) => {
   });
 });
 
+// GET World
+app.get("/world", (request, response) => {
+  const corona = undefined;
+  response.render("world", { corona });
+});
+
 //Server
 const PORT = 4545;
 const ADDRESS = "localhost";
