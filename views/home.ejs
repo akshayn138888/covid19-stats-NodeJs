@@ -1,0 +1,26 @@
+<div class="container">
+  <form action="/stats" method="POST">
+    <div class="form-group">
+      <label for="content"><strong>Enter the country</strong></label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        aria-describedby="emailHelp"
+        name="country"
+        placeholder="Please enter your moterland's name"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >Press submit after filling Country
+      </small>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+      GET ME THE STATs QUIck
+    </button>
+  </form>
+  <% if (corona != undefined) {%>
+  <p>SHIT WILL HAPPEN</p>
+  <p><%= corona.response[0].country %></p>
+  <% } %>
+</div>
