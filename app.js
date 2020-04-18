@@ -57,6 +57,7 @@ app.post("/stats", (request, response) => {
   });
   req.end(function(res) {
     let corona = res.body;
+    console.log(corona);
     response.render("home", { corona });
   });
 });

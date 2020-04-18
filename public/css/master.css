@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css?family=Staatliches|Thasadith");
+@import url("reset.css");
+
+/* Mobile First Styles */
+/* 
+    A mobile-first approach to styling means that styles are applied first to mobile
+    devices. Code for larger screens is usually more compolicated than the codes (styles)
+    for smaller screens. This is why styling mobile first helps simplify your code.
+    Advanced styles and other overrides for larger screens are then added into the 
+    stylesheet via media queries. Thsi approach uses min-width media queries.
+*/
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+p {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
