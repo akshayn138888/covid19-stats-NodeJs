@@ -49,8 +49,8 @@ app.get("/", (request, response) => {
 
 // Post function
 
-app.post("/stats", (request, response) => {
-  let country = request.body.country;
+app.post("/stats/:country", (request, response) => {
+  let country = request.params.country;
   console.log(country);
   req.query({
     country: country
@@ -58,7 +58,7 @@ app.post("/stats", (request, response) => {
   req.end(function(res) {
     let corona = res.body;
     console.log(corona);
-    response.render("home", { corona });
+    response.render("/world", { corona });
   });
 });
 
