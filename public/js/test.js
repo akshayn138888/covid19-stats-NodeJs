@@ -11,6 +11,21 @@ for (let i = 0; i < area.length; i++) {
       .then(res => res.json())
       .then(data => {
         console.log("Success:", data);
+        const renderCountries = countries => {
+          console.log(countries);
+          const countryContainer = document.getElementById("country-data");
+          countryContainer.innerHTML = countries
+            .map(country => {
+              return `
+                    <li>
+                        Country: <h1>${country.country}</h1>
+                        Active Cases: <p>${country.cases.active}</p>
+                    </li>
+                `;
+            })
+            .join("");
+        };
+        renderCountries(data.response);
       })
       .catch(err => {
         console.error("Error:", err);

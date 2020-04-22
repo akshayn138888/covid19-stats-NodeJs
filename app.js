@@ -31,12 +31,12 @@ app.use((request, response, next) => {
 
 // API unirest - Corona
 var unirest = require("unirest");
-
 var req = unirest("GET", "https://covid-193.p.rapidapi.com/statistics");
 req.headers({
   "x-rapidapi-host": "covid-193.p.rapidapi.com",
   "x-rapidapi-key": "576d01f711msh95c5bc8d82ef3ddp14b0edjsnf2c4fb404008"
 });
+
 // req.query({
 //   country: "Canada"
 // });
@@ -46,31 +46,41 @@ app.get("/", (request, response) => {
   const corona = undefined;
   response.render("home", { corona });
 });
-
+app.use((request, response, next) => {
+  response.locals.countryData = "";
+  console.log(request.params);
+  // console.log("Clicked Country: !!!!!!! " + request.params.country);
+  // quest.query({ country: request.body });
+  // consreole.log(response.body);
+  next();
+});
 // Post function
 
-app.post("/stats/:country", (request, response) => {
+app.get("/world/:country", (request, response) => {
   let country = request.params.country;
-  console.log(country);
+  //console.log(request.body);
+  //console.log(country);
   req.query({
     country: country
   });
+  //console.log(response.body);
   req.end(function(res) {
-    let corona = res.body;
-    console.log(corona);
-    response.render("/world", { corona });
+    const countryData = res.body;
+    response.locals.countryData = countryData || "";
+    //console.log("Country DATA : " + countryData);
+    //console.log(corona);
+    response.render("world", { countryData });
   });
 });
 
 // GET World
 app.get("/world", (request, response) => {
-  const corona = undefined;
-  response.render("world", { corona });
+  response.render("world");
 });
 
 //Server
 const PORT = 4545;
 const ADDRESS = "localhost";
 app.listen(PORT, ADDRESS, () => {
-  console.log(`Server listening on http://${ADDRESS}:${PORT}`);
+  console.log(`Server listening on http://${ADDRESS}:${PORT}/world`);
 });
